@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" width="507" height="338"  />
+<title>Lava Lamp</title>
+<style>
+.lavalamp-object {
+	background-color:#ccc;
+}
+img {
+	margin:25px;
+}
+</style>
+
+</head>
+
+<body>
+<h1 class="page-title">Demo</h1>
+
+<p>More info and examples at <a target="_blank" href="http://lavalamp.magicmediamuse.com/">http://lavalamp.magicmediamuse.com/</a></p>
+
+<h2 id="default-head">Default</h2>
+<p>Creates a div that animates when you mouse over sibling elements.</p>
+<div id="default">
+    <img src="images/103332256.jpg" alt="dandelion seeds" class="active" />
+    <img src="images/104209996.jpg" alt="lake" />
+    <img src="images/146672189.jpg" alt="park" />
+    <img src="images/sb10065850n-001.jpg" alt="bike" />
+</div>
+
+<h2 id="margins-head">Margins</h2>
+<p>Calculates margins when determining the width and height of the lava lamp object.</p>
+<div id="margins">
+    <img src="images/103332256.jpg" alt="dandelion seeds" class="active" />
+    <img src="images/104209996.jpg" alt="lake" />
+    <img src="images/146672189.jpg" alt="park" />
+    <img src="images/sb10065850n-001.jpg" alt="bike" />
+</div>
+
+<h2 id="setonclick-head">Set on Click</h2>
+<p>The lava lamp object sets a new active element when you click on it. You still have to set a default active element or the lavalamp won't initialize correctly.</p>
+<div id="setonclick">
+    <img src="images/103332256.jpg" alt="dandelion seeds" class="active" />
+    <img src="images/104209996.jpg" alt="lake" />
+    <img src="images/146672189.jpg" alt="park" />
+    <img src="images/sb10065850n-001.jpg" alt="bike" />
+</div>
+
+<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	
+	$('#default').lavalamp({
+		easing: 'easeOutBack'
+	});
+	
+	$('#margins').lavalamp({
+		easing: 'easeOutBack',
+		margins:true
+	});
+	
+	$('#setonclick').lavalamp({
+		easing: 'easeOutBack',
+		setOnClick:true
+	});
+	
+});
+</script>
+</body>
+</html>
