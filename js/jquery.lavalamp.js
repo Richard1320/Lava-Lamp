@@ -7,7 +7,7 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.0
+ * 1.0.1
  * 
  * Copyright (c) 2013 Richard Hung.
  * 
@@ -46,13 +46,19 @@
 				// Set variables
 				var list   = $(this);
 				var items  = list.children();
-				var active = list.children(activeObj);
+				active     = list.children(activeObj);
+				
+				// Check if active element exists
+				if (active.length == 0) {
+					active = items.eq(0);
+				}
 				
 				// Set variables to object
 				list.data({
-					easing:   easing,
-					duration: duration,
-					margins:  margins
+					easing:     easing,
+					duration:   duration,
+					margins:    margins,
+					setOnClick: setOnClick
 				});
 				
 				// Create basic structure
@@ -84,19 +90,23 @@
 				}
 				
 				obj.css({
-					width:      w,
-					height:     h,
-					top:        t,
-					left:       l
+					width:  w,
+					height: h,
+					top:    t,
+					left:   l
 				});
 				
-				items.hover(function() {
+				enter = function() {
 					var des = $(this);
 					list.lavalamp('anim',des);
-				}, function() {
+				} // end mousenter
+				leave = function() {
 					list.lavalamp('anim',active);
-				});
+				} // end mouseleave
 				
+				list.on('mouseenter','.lavalamp-item',enter);
+				list.on('mouseleave','.lavalamp-item',leave);
+								
 				if (setOnClick) {
 					$(items).click(function() {
 						active = $(this);
@@ -109,22 +119,47 @@
 		}, // End init
 		destroy : function() {
 			return this.each(function(){
-				alert('destroy');
+				var list  = $(this);
+				var items = list.children('.lavalamp-item');
+				
+				// Unbind the plugin effect
+				list.off('mouseenter', '.lavalamp-item', enter);
+				list.off('mouseleave', '.lavalamp-item', leave);
+				
+				// Remove CSS
+				list.removeClass('lavalamp');
+				items.removeClass('lavalamp-item');
+				
+				// Remove the lavalamp object
+				list.children('.lavalamp-object').remove();
+				
+				// Remove data from wrapper
+				list.removeData();
+				
 			});
 		}, // End destroy
 		update : function () {
 			return this.each(function(){
-				alert('update');
+				var list  = $(this);
+				var items = list.children(':not(.lavalamp-object)');
+				
+				items.addClass('lavalamp-item').css({
+					zIndex:5,
+					position:'relative'
+				});
+				
 			});
 		}, // End update
 		anim : function(destination) {
-			var duration = this.data('duration');
-			var easing   = this.data('easing');
-			var margins  = this.data('margins');
+			var list     = this;
+			var duration = list.data('duration');
+			var easing   = list.data('easing');
+			var margins  = list.data('margins');
 			
-			var obj = this.children('.lavalamp-object');
+			var obj = list.children('.lavalamp-object');
 			
 			var w  = destination.outerWidth(margins);
+
 			var h  = destination.outerHeight(margins);
 			var t  = destination.position().top;
 			var l  = destination.position().left;
@@ -141,16 +176,21 @@
 			}
 			
 			obj.stop(true,false).animate({
-				width:      w,
-				height:     h,
-				top:        t,
-				left:       l
+				width:  w,
+				height: h,
+				top:    t,
+				left:   l
 			}, duration, easing);
 		} // End animate 
 	}; // End method
     
 	
 	$.fn.lavalamp = function(method) {
+		
+		// Create outer variables
+		var active;
+		var enter;
+		var leave;
 		
 		if ( methods[method] ) {
 			return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
