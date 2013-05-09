@@ -7,7 +7,7 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.1
+ * 1.0.2
  * 
  * Copyright (c) 2013 Richard Hung.
  * 
@@ -46,7 +46,7 @@
 				// Set variables
 				var list   = $(this);
 				var items  = list.children();
-				active     = list.children(activeObj);
+				var active = list.children(activeObj);
 				
 				// Check if active element exists
 				if (active.length == 0) {
@@ -160,6 +160,7 @@
 			
 			var w  = destination.outerWidth(margins);
 
+
 			var h  = destination.outerHeight(margins);
 			var t  = destination.position().top;
 			var l  = destination.position().left;
@@ -188,7 +189,6 @@
 	$.fn.lavalamp = function(method) {
 		
 		// Create outer variables
-		var active;
 		var enter;
 		var leave;
 		
