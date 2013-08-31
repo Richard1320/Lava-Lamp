@@ -1,13 +1,13 @@
 /**
  * Lava Lamp
- * http://www.lavalamp.magicmediamuse.com/
+ * http://lavalamp.magicmediamuse.com/
  *
  * Author
  * Richard Hung
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.2
+ * 1.0.3
  * 
  * Copyright (c) 2013 Richard Hung.
  * 
@@ -24,11 +24,13 @@
 
 			// Set default parameters
 			var defaultSettings = {
-				easing:     'swing',  // Easing transition
-				duration:   700,      // Duration of animation
-				margins:    false,    // Whether or not to include margins
-				setOnClick: false,    // Whether or not to set the new active element on click
-				activeObj:  '.active' // Selector for the active element
+				easing:     'swing',   // Easing transition
+				duration:   700,       // Duration of animation
+				margins:    false,     // Whether or not to include margins
+				setOnClick: false,     // Whether or not to set the new active element on click
+				activeObj:  '.active', // Selector for the active element
+				autoUpdate: false,     // Update every interval
+				updateTime: 100        // Time between update checks
 			}; // End options
 			
 			// Override default options
@@ -42,6 +44,8 @@
 				var margins    = settings.margins;
 				var setOnClick = settings.setOnClick;
 				var activeObj  = settings.activeObj;
+				var autoUpdate = settings.autoUpdate;
+				var updateTime = settings.updateTime;
 				
 				// Set variables
 				var list   = $(this);
@@ -58,19 +62,21 @@
 					easing:     easing,
 					duration:   duration,
 					margins:    margins,
-					setOnClick: setOnClick
+					setOnClick: setOnClick,
+					active:     active,
+					isAnim:     false
 				});
 				
 				// Create basic structure
 				list.addClass('lavalamp').css({
-					position:'relative'
+					position: 'relative'
 				});
 				var obj = $('<div class="lavalamp-object" />').prependTo(list).css({
-					position:'absolute'
+					position: 'absolute'
 				});
 				items.addClass('lavalamp-item').css({
-					zIndex:5,
-					position:'relative'
+					zIndex:   5,
+					position: 'relative'
 				});
 				
 				var w  = active.outerWidth(margins);
@@ -96,13 +102,19 @@
 					left:   l
 				});
 				
+				var onHover = false;
 				enter = function() {
 					var des = $(this);
+					onHover = true;
 					list.lavalamp('anim',des);
 				} // end mousenter
 				leave = function() {
+					onHover = false;
 					list.lavalamp('anim',active);
 				} // end mouseleave
+				
+				// items.hover(enter, leave);
+					
 				
 				list.on('mouseenter','.lavalamp-item',enter);
 				list.on('mouseleave','.lavalamp-item',leave);
@@ -110,10 +122,18 @@
 				if (setOnClick) {
 					$(items).click(function() {
 						active = $(this);
+						list.data('active',active);
 					});
 				} // End set on click
 				
-				
+				if (autoUpdate) {
+					setInterval(function() {
+						var isAnim = list.data('isAnim');
+						if (onHover == false && isAnim == false) {
+							list.lavalamp('update');
+						}
+					}, updateTime); // End setinterval
+				} // End auto update
 			}); // End object loop
 	
 		}, // End init
@@ -140,13 +160,19 @@
 		}, // End destroy
 		update : function () {
 			return this.each(function(){
-				var list  = $(this);
-				var items = list.children(':not(.lavalamp-object)');
+				var list   = $(this);
+				var items  = list.children(':not(.lavalamp-object)');
+				var active = list.data('active');
+				var obj    = list.children('lavalamp-object');
 				
+				// reset list objects
 				items.addClass('lavalamp-item').css({
 					zIndex:5,
 					position:'relative'
 				});
+				
+				// reset to active item
+				list.lavalamp('anim',active);
 				
 			});
 		}, // End update
@@ -176,12 +202,15 @@
 				t = t + mt;
 			}
 			
+			list.data('isAnim',true)
 			obj.stop(true,false).animate({
 				width:  w,
 				height: h,
 				top:    t,
 				left:   l
-			}, duration, easing);
+			}, duration, easing, function() {
+				list.data('isAnim',false);
+			});
 		} // End animate 
 	}; // End method
     
