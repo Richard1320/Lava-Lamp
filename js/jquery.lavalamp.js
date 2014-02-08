@@ -7,9 +7,9 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.3
+ * 1.0.4
  * 
- * Copyright (c) 2013 Richard Hung.
+ * Copyright (c) 2014 Richard Hung.
  * 
  * License
  * Lava Lamp by Richard Hung is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
@@ -107,11 +107,12 @@
 					var des = $(this);
 					onHover = true;
 					list.lavalamp('anim',des);
-				} // end mousenter
+				}; // end mousenter
 				leave = function() {
+					var des = list.data('active');
 					onHover = false;
-					list.lavalamp('anim',active);
-				} // end mouseleave
+					list.lavalamp('anim',des);
+				}; // end mouseleave
 				
 				// items.hover(enter, leave);
 					
@@ -163,7 +164,7 @@
 				var list   = $(this);
 				var items  = list.children(':not(.lavalamp-object)');
 				var active = list.data('active');
-				var obj    = list.children('lavalamp-object');
+				var obj    = list.children('.lavalamp-object');
 				
 				// reset list objects
 				items.addClass('lavalamp-item').css({
@@ -218,8 +219,7 @@
 	$.fn.lavalamp = function(method) {
 		
 		// Create outer variables
-		var enter;
-		var leave;
+		var enter, leave;
 		
 		if ( methods[method] ) {
 			return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
