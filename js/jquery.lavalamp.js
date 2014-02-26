@@ -103,12 +103,12 @@
 				});
 				
 				var onHover = false;
-				enter = function() {
+				lavalampEnter = function() {
 					var des = $(this);
 					onHover = true;
 					list.lavalamp('anim',des);
 				}; // end mousenter
-				leave = function() {
+				lavalampLeave = function() {
 					var des = list.data('active');
 					onHover = false;
 					list.lavalamp('anim',des);
@@ -117,8 +117,8 @@
 				// items.hover(enter, leave);
 					
 				
-				list.on('mouseenter','.lavalamp-item',enter);
-				list.on('mouseleave','.lavalamp-item',leave);
+				list.on('mouseenter','.lavalamp-item',lavalampEnter);
+				list.on('mouseleave','.lavalamp-item',lavalampLeave);
 								
 				if (setOnClick) {
 					$(items).click(function() {
@@ -144,8 +144,8 @@
 				var items = list.children('.lavalamp-item');
 				
 				// Unbind the plugin effect
-				list.off('mouseenter', '.lavalamp-item', enter);
-				list.off('mouseleave', '.lavalamp-item', leave);
+				list.off('mouseenter', '.lavalamp-item', lavalampEnter);
+				list.off('mouseleave', '.lavalamp-item', lavalampLeave);
 				
 				// Remove CSS
 				list.removeClass('lavalamp');
@@ -203,7 +203,7 @@
 				t = t + mt;
 			}
 			
-			list.data('isAnim',true)
+			list.data('isAnim',true);
 			obj.stop(true,false).animate({
 				width:  w,
 				height: h,
@@ -218,9 +218,6 @@
 	
 	$.fn.lavalamp = function(method) {
 		
-		// Create outer variables
-		var enter, leave;
-		
 		if ( methods[method] ) {
 			return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
 		} else if ( typeof method === 'object' || ! method ) {
@@ -231,5 +228,8 @@
 		
 	}; // End plugin
 	
+	// Create outer variables
+	var lavalampEnter, lavalampLeave;
+		
 })(jQuery); 
 
