@@ -7,7 +7,7 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.4
+ * 1.0.5
  * 
  * Copyright (c) 2014 Richard Hung.
  * 
