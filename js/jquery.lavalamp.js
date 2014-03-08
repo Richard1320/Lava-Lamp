@@ -7,7 +7,7 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.5
+ * 1.0.6
  * 
  * Copyright (c) 2014 Richard Hung.
  * 
@@ -24,13 +24,14 @@
 
 			// Set default parameters
 			var defaultSettings = {
-				easing:     'swing',   // Easing transition
-				duration:   700,       // Duration of animation
-				margins:    false,     // Whether or not to include margins
-				setOnClick: false,     // Whether or not to set the new active element on click
-				activeObj:  '.active', // Selector for the active element
-				autoUpdate: false,     // Update every interval
-				updateTime: 100        // Time between update checks
+				easing:      'swing',   // Easing transition
+				duration:    700,       // Duration of animation
+				margins:     false,     // Whether or not to include margins
+				setOnClick:  false,     // Whether or not to set the new active element on click
+				activeObj:   '.active', // Selector for the active element
+				autoUpdate:  false,     // Update every interval
+				updateTime:  100,       // Time between update checks
+				enableHover: true       // lavalamp moves with hover instead of click
 			}; // End options
 			
 			// Override default options
@@ -39,13 +40,14 @@
 			return this.each(function(){
 				
 				// Get the options
-				var easing     = settings.easing;
-				var duration   = settings.duration;
-				var margins    = settings.margins;
-				var setOnClick = settings.setOnClick;
-				var activeObj  = settings.activeObj;
-				var autoUpdate = settings.autoUpdate;
-				var updateTime = settings.updateTime;
+				var easing      = settings.easing;
+				var duration    = settings.duration;
+				var margins     = settings.margins;
+				var setOnClick  = settings.setOnClick;
+				var activeObj   = settings.activeObj;
+				var autoUpdate  = settings.autoUpdate;
+				var updateTime  = settings.updateTime;
+				var enableHover = settings.enableHover;
 				
 				// Set variables
 				var list   = $(this);
@@ -59,12 +61,13 @@
 				
 				// Set variables to object
 				list.data({
-					easing:     easing,
-					duration:   duration,
-					margins:    margins,
-					setOnClick: setOnClick,
-					active:     active,
-					isAnim:     false
+					easing:      easing,
+					duration:    duration,
+					margins:     margins,
+					setOnClick:  setOnClick,
+					active:      active,
+					enableHover: enableHover,
+					isAnim:      false
 				});
 				
 				// Create basic structure
@@ -117,13 +120,15 @@
 				// items.hover(enter, leave);
 					
 				
-				list.on('mouseenter','.lavalamp-item',lavalampEnter);
-				list.on('mouseleave','.lavalamp-item',lavalampLeave);
+				if (enableHover) {
+					list.on('mouseenter','.lavalamp-item',lavalampEnter);
+					list.on('mouseleave','.lavalamp-item',lavalampLeave);
+				}
 								
 				if (setOnClick) {
-					$(items).click(function() {
+					items.click(function() {
 						active = $(this);
-						list.data('active',active);
+						list.data('active',active).lavalamp('update');
 					});
 				} // End set on click
 				
@@ -140,12 +145,15 @@
 		}, // End init
 		destroy : function() {
 			return this.each(function(){
-				var list  = $(this);
-				var items = list.children('.lavalamp-item');
+				var list        = $(this);
+				var items       = list.children('.lavalamp-item');
+				var enableHover = list.data('enableHover');
 				
 				// Unbind the plugin effect
-				list.off('mouseenter', '.lavalamp-item', lavalampEnter);
-				list.off('mouseleave', '.lavalamp-item', lavalampLeave);
+				if (enableHover) {
+					list.off('mouseenter', '.lavalamp-item', lavalampEnter);
+					list.off('mouseleave', '.lavalamp-item', lavalampLeave);
+				}
 				
 				// Remove CSS
 				list.removeClass('lavalamp');
