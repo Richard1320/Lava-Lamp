@@ -1,6 +1,18 @@
 {
   "name": "lavalamp",
   "description": "Lava Lamp is a jQuery plugin for menus. It creates a div that moves when you hover over an element, giving it an elastic animation.",
+  "main": "js/jquery.lavalamp.js",
+  "ignore": [
+	"images",
+	"js/jquery-2.1.0.min.js",
+	"js/jquery.easing.1.3.js",
+	"js/jquery.lavalamp.min.js",
+	"demo.html",
+	"bower.json",
+	"lavalamp.jquery.json",
+	"package.json",
+	"README.md"
+  ],
   "keywords": [
 	"navigation",
 	"navbar",
@@ -24,7 +36,6 @@
 		"url": "http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"
 	}
   ],
-  "main": "js/jquery.lavalamp.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Richard1320/Lava-Lamp.git"
