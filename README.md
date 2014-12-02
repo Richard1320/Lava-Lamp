@@ -15,6 +15,12 @@ Install it using [Bower](http://bower.io):
 $ bower install lavalamp
 ```
 
+Install it using [npm](https://www.npmjs.org/):
+
+```sh
+$ npm install lavalamp
+```
+
 Or [download as ZIP](https://github.com/Richard1320/Lava-Lamp/archive/master.zip).
 
 Key Features
