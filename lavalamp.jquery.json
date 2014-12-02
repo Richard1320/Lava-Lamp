@@ -28,7 +28,7 @@
 "docs": "http://lavalamp.magicmediamuse.com",
 "download": "http://lavalamp.magicmediamuse.com/download.php",
 "dependencies": {
-"jquery": ">=2.0"
+"jquery": ">=1.7"
 }
 
 }
