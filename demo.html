@@ -61,7 +61,17 @@ img {
 	<option selected="selected" value="3">Item 4</option>
 </select>
 
-<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<h2 id="delay-head">Delay Animation</h2>
+<p>You can put a delay before and after hover states.</p>
+<div id="delay">
+    <img src="images/103332256.jpg" alt="dandelion seeds" class="active" />
+    <img src="images/104209996.jpg" alt="lake" />
+    <img src="images/146672189.jpg" alt="park" />
+    <img src="images/sb10065850n-001.jpg" alt="bike" />
+</div>
+
+
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
 <script type="text/javascript">
@@ -91,6 +101,13 @@ $(document).ready(function() {
 		
 		$('#setactive').data('active',a).lavalamp('update');
 	});
+
+	$('#delay').lavalamp({
+		easing: 'easeOutBack',
+		delayOn: 500,
+		delayOff: 1000
+	});
+	
 });
 </script>
 </body>
