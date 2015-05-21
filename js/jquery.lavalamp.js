@@ -7,7 +7,7 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.6
+ * 1.0.7
  * 
  * Copyright (c) 2014 Richard Hung.
  * 
@@ -31,7 +31,9 @@
 				activeObj:   '.active', // Selector for the active element
 				autoUpdate:  false,     // Update every interval
 				updateTime:  100,       // Time between update checks
-				enableHover: true       // lavalamp moves with hover instead of click
+				enableHover: true,      // lavalamp moves with hover instead of click
+				delayOn:     0,         // Delay time on hover
+				delayOff:    0          // Delay time off hover
 			}; // End options
 			
 			// Override default options
@@ -48,6 +50,8 @@
 				var autoUpdate  = settings.autoUpdate;
 				var updateTime  = settings.updateTime;
 				var enableHover = settings.enableHover;
+				var delayOn     = settings.delayOn;
+				var delayOff    = settings.delayOff;
 				
 				// Set variables
 				var list   = $(this);
@@ -61,13 +65,9 @@
 				
 				// Set variables to object
 				list.data({
-					easing:      easing,
-					duration:    duration,
-					margins:     margins,
-					setOnClick:  setOnClick,
-					active:      active,
-					enableHover: enableHover,
-					isAnim:      false
+					active:   active,
+					isAnim:   false,
+					settings: settings
 				});
 				
 				// Create basic structure
@@ -109,12 +109,25 @@
 				lavalampEnter = function() {
 					var des = $(this);
 					onHover = true;
-					list.lavalamp('anim',des);
+					
+					// delay and animate
+					setTimeout(function() {
+						if (onHover) {
+							list.lavalamp('anim',des);
+						}
+					},delayOn);
+					
 				}; // end mousenter
 				lavalampLeave = function() {
 					var des = list.data('active');
 					onHover = false;
-					list.lavalamp('anim',des);
+					
+					// delay and animate
+					setTimeout(function() {
+						if (!onHover) {
+							list.lavalamp('anim',des);
+						}
+					},delayOff);
 				}; // end mouseleave
 				
 				// items.hover(enter, leave);
@@ -133,12 +146,14 @@
 				} // End set on click
 				
 				if (autoUpdate) {
-					setInterval(function() {
+					var updateInterval = setInterval(function() {
 						var isAnim = list.data('isAnim');
 						if (onHover == false && isAnim == false) {
 							list.lavalamp('update');
 						}
 					}, updateTime); // End setinterval
+					
+					list.data('updateInterval',updateInterval);
 				} // End auto update
 			}); // End object loop
 	
@@ -146,8 +161,10 @@
 		destroy : function() {
 			return this.each(function(){
 				var list        = $(this);
+				var settings    = list.data('settings');
 				var items       = list.children('.lavalamp-item');
-				var enableHover = list.data('enableHover');
+				var enableHover = settings.enableHover;
+				var autoUpdate  = settings.autoUpdate;
 				
 				// Unbind the plugin effect
 				if (enableHover) {
@@ -158,6 +175,12 @@
 				// Remove CSS
 				list.removeClass('lavalamp');
 				items.removeClass('lavalamp-item');
+				
+				// remove auto update
+				if (autoUpdate) {
+					var updateInterval = list.data('updateInterval');
+					clearInterval(updateInterval);
+				} // End auto update
 				
 				// Remove the lavalamp object
 				list.children('.lavalamp-object').remove();
@@ -187,9 +210,10 @@
 		}, // End update
 		anim : function(destination) {
 			var list     = this;
-			var duration = list.data('duration');
-			var easing   = list.data('easing');
-			var margins  = list.data('margins');
+			var settings = list.data('settings');
+			var duration = settings.duration;
+			var easing   = settings.easing;
+			var margins  = settings.margins;
 			
 			var obj = list.children('.lavalamp-object');
 			
