@@ -70,6 +70,23 @@ img {
     <img src="images/sb10065850n-001.jpg" alt="bike" />
 </div>
 
+<h2 id="focus-head">Animate on Focus</h2>
+<p>Lavalamp object animates on object focus.</p>
+<div id="focus">
+    <a href="#1" style="display:block;padding:20px;"></a>
+    <a href="#2" style="display:block;padding:20px;"></a>
+    <a href="#3" style="display:block;padding:20px;"></a>
+    <a href="#4" style="display:block;padding:20px;"></a>
+</div>
+
+<h2 id="focus-deep-head">Animate on Decendent Focus</h2>
+<p>Lavalamp object moves on focus of decendents.</p>
+<div id="focus-deep">
+    <div style="padding:20px;"><input type="text" name="input[]" /></div>
+    <div style="padding:20px;"><input type="text" name="input[]" /></div>
+    <div style="padding:20px;"><input type="text" name="input[]" /></div>
+    <div style="padding:20px;"><input type="text" name="input[]" /></div>
+</div>
 
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
@@ -108,6 +125,15 @@ $(document).ready(function() {
 		delayOff: 1000
 	});
 	
+	$('#focus').lavalamp({
+		easing: 'easeOutBack',
+		enableFocus: true
+	});
+	
+	$('#focus-deep').lavalamp({
+		easing: 'easeOutBack',
+		deepFocus: true
+	});
 });
 </script>
 </body>
