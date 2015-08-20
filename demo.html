@@ -116,7 +116,7 @@ $(document).ready(function() {
 		var v = $(this).val();
 		var a = $('#setactive').children('.lavalamp-item').eq(v);
 		
-		$('#setactive').data('active',a).lavalamp('update');
+		$('#setactive').data('lavalampActive',a).lavalamp('update');
 	});
 
 	$('#delay').lavalamp({
