@@ -8,9 +8,10 @@
 	"nav",
 	"animation",
 	"hover",
+	"css3",
 	"menu"
 ],
-"version": "1.0.8",
+"version": "1.0.9",
 "author": {
 	"name": "Richard Hung",
 	"email": "richardhung111@gmail.com",
