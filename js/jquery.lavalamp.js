@@ -7,9 +7,9 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.8
+ * 1.0.9
  * 
- * Copyright (c) 2014 Richard Hung.
+ * Copyright (c) 2016 Richard Hung.
  * 
  * License
  * Lava Lamp by Richard Hung is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
@@ -37,7 +37,8 @@
 				delayOn:     0,         // Delay time on hover
 				delayOff:    0,         // Delay time off hover
 				enableFocus: false,     // Animate on keyboard focus
-				deepFocus:   false      // Animate on decendent focus 
+				deepFocus:   false,     // Animate on decendant focus 
+				css3:        false,     // Use CSS3 transitions instead of jQuery animate
 			}; // End options
 			
 			// Override default options
@@ -56,6 +57,8 @@
 				var delayOff    = settings.delayOff;
 				var enableFocus = settings.enableFocus;
 				var deepFocus   = settings.deepFocus;
+				var duration    = settings.duration;
+				var easing      = settings.easing;
 				
 				// Set variables
 				var list   = $(this);
@@ -63,7 +66,7 @@
 				var active = list.children(activeObj);
 				
 				// Check if active element exists
-				if (active.length == 0) {
+				if (active.length === 0) {
 					active = items.eq(0);
 				}
 				
@@ -79,12 +82,28 @@
 					position: 'relative'
 				});
 				var obj = $('<div class="lavalamp-object" />').prependTo(list).css({
-					position: 'absolute'
+					position: 'absolute',
 				});
 				items.addClass('lavalamp-item').css({
 					zIndex:   5,
 					position: 'relative'
 				});
+				
+				// Check for CSS3 animations
+				if (settings.css3) {
+					obj.css({
+						WebkitTransitionDuration: duration / 1000 + 's',
+						msTransitionDuration: duration / 1000 + 's',
+						MozTransitionDuration: duration / 1000 + 's',
+						OTransitionDuration: duration / 1000 + 's',
+						transitionDuration: duration / 1000 + 's',
+						WebkitTransitionTimingFunction: easing,
+						msTransitionTimingFunction: easing,
+						MozTransitionTimingFunction: easing,
+						OTransitionTimingFunction: easing,
+						transitionTimingFunction: easing
+					});
+				}
 				
 				var w  = active.outerWidth(margins);
 				var h  = active.outerHeight(margins);
@@ -150,20 +169,17 @@
 					setTimeout(function() {
 						list.lavalamp('anim',des);
 					},delayOn);
-					console.log('in');
 					
 				}; // end focus in
 				focusOut = function() {
 					enAnim = true;
 					
 					var des = list.data('lavalampActive');
-					console.log(des);
 					
 					// delay and animate
 					setTimeout(function() {
 						list.lavalamp('anim',des);
 					},delayOff);
-					console.log('out');
 				}; // end focus out
 				
 				// items.hover(enter, leave);
@@ -193,7 +209,7 @@
 				if (autoUpdate) {
 					var updateInterval = setInterval(function() {
 						var isAnim = list.data('isAnim');
-						if (onHover == false && isAnim == false) {
+						if (!onHover && !isAnim) {
 							list.lavalamp('update');
 						}
 					}, updateTime); // End setinterval
@@ -288,14 +304,26 @@
 			}
 			
 			list.data('isAnim',true);
-			obj.stop(true,false).animate({
-				width:  w,
-				height: h,
-				top:    t,
-				left:   l
-			}, duration, easing, function() {
-				list.data('isAnim',false);
-			});
+			if (settings.css3) {
+				obj.css({
+					width:  w,
+					height: h,
+					top:    t,
+					left:   l
+				});
+				setTimeout(function() {
+					list.data('isAnim',false);
+				},duration);
+			} else {
+				obj.stop(true,false).animate({
+					width:  w,
+					height: h,
+					top:    t,
+					left:   l
+				}, duration, easing, function() {
+					list.data('isAnim',false);
+				});
+			}
 		} // End animate 
 	}; // End method
     
