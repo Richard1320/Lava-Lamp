@@ -7,9 +7,9 @@
  * http://www.magicmediamuse.com/
  *
  * Version
- * 1.0.9
+ * 1.1.0
  * 
- * Copyright (c) 2016 Richard Hung.
+ * Copyright (c) 2014 Richard Hung.
  * 
  * License
  * Lava Lamp by Richard Hung is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
@@ -26,7 +26,7 @@
 
 			// Set default parameters
 			var defaultSettings = {
-				easing:      'swing',   // Easing transition
+				easing:      'ease',    // Easing transition
 				duration:    700,       // Duration of animation
 				margins:     false,     // Whether or not to include margins
 				setOnClick:  false,     // Whether or not to set the new active element on click
@@ -38,7 +38,6 @@
 				delayOff:    0,         // Delay time off hover
 				enableFocus: false,     // Animate on keyboard focus
 				deepFocus:   false,     // Animate on decendant focus 
-				css3:        false,     // Use CSS3 transitions instead of jQuery animate
 			}; // End options
 			
 			// Override default options
@@ -71,39 +70,24 @@
 				}
 				
 				// Set variables to object
-				list.data({
+				list.addClass('lavalamp').data({
 					lavalampActive: active,
 					isAnim:         false,
 					settings:       settings
 				});
 				
-				// Create basic structure
-				list.addClass('lavalamp').css({
-					position: 'relative'
-				});
-				var obj = $('<div class="lavalamp-object" />').prependTo(list).css({
-					position: 'absolute',
-				});
-				items.addClass('lavalamp-item').css({
-					zIndex:   5,
-					position: 'relative'
-				});
+				// Create lavalamp object
+				var obj = $('<div class="lavalamp-object '+easing+'" />').prependTo(list);
+				items.addClass('lavalamp-item');
 				
 				// Check for CSS3 animations
-				if (settings.css3) {
-					obj.css({
-						WebkitTransitionDuration: duration / 1000 + 's',
-						msTransitionDuration: duration / 1000 + 's',
-						MozTransitionDuration: duration / 1000 + 's',
-						OTransitionDuration: duration / 1000 + 's',
-						transitionDuration: duration / 1000 + 's',
-						WebkitTransitionTimingFunction: easing,
-						msTransitionTimingFunction: easing,
-						MozTransitionTimingFunction: easing,
-						OTransitionTimingFunction: easing,
-						transitionTimingFunction: easing
-					});
-				}
+				obj.css({
+					WebkitTransitionDuration: duration / 1000 + 's',
+					msTransitionDuration: duration / 1000 + 's',
+					MozTransitionDuration: duration / 1000 + 's',
+					OTransitionDuration: duration / 1000 + 's',
+					transitionDuration: duration / 1000 + 's',
+				});
 				
 				var w  = active.outerWidth(margins);
 				var h  = active.outerHeight(margins);
@@ -122,10 +106,9 @@
 				}
 				
 				obj.css({
-					width:  w,
-					height: h,
-					top:    t,
-					left:   l
+					width:     w,
+					height:    h,
+					transform: 'translate('+l+'px,'+t+'px)'
 				});
 				
 				var onHover = false; // check if item is still hovered after delay
@@ -282,7 +265,6 @@
 			var list     = this;
 			var settings = list.data('settings');
 			var duration = settings.duration;
-			var easing   = settings.easing;
 			var margins  = settings.margins;
 			
 			var obj = list.children('.lavalamp-object');
@@ -304,26 +286,14 @@
 			}
 			
 			list.data('isAnim',true);
-			if (settings.css3) {
-				obj.css({
-					width:  w,
-					height: h,
-					top:    t,
-					left:   l
-				});
-				setTimeout(function() {
-					list.data('isAnim',false);
-				},duration);
-			} else {
-				obj.stop(true,false).animate({
-					width:  w,
-					height: h,
-					top:    t,
-					left:   l
-				}, duration, easing, function() {
-					list.data('isAnim',false);
-				});
-			}
+			obj.css({
+				width:     w,
+				height:    h,
+				transform: 'translate('+l+'px,'+t+'px)'
+			});
+			setTimeout(function() {
+				list.data('isAnim',false);
+			},duration);
 		} // End animate 
 	}; // End method
     

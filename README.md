@@ -33,9 +33,10 @@ Key Features
 How to Use
 --------------------
 
-Lava Lamp is just a .js file in addition to the jQuery library. Recommended, you can include the <a href="https://github.com/gdsmith/jquery.easing" target="_blank">easing plugin</a> for animations.
+Lava Lamp has a .js  and .css file in addition to the jQuery library. All its animations are done with CSS3 transitions, so you can use or modify the advanced transition-timing-function to create custom easing.
 
 ```
+<link type="text/css" href="css/jquery.lavalamp.css" rel="stylesheet" media="screen" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
 ```
