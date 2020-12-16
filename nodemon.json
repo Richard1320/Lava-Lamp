@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "src"
+  ],
+  "ext": "ts,scss",
+  "ignore": [
+    "*.test.ts"
+  ],
+  "exec": "npm run build && npm run lint"
+}
