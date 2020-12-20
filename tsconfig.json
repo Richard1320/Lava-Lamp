@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "build",
     "sourceMap": true,
-    "moduleResolution": "node",
-    "declaration": false,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "target": "es5",
-    "esModuleInterop": true
+    "lib": [
+      "dom",
+      "es6"
+    ]
   },
   "files": [
-    "src/lavalamp.ts"
-  ]
+    "src/lavalamp.class.ts"
+  ],
+  "compileOnSave": false
 }

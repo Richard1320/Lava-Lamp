@@ -11,17 +11,19 @@
     "menu"
   ],
   "version": "2.0.0",
-  "types": "interfaces/index.d.ts",
+  "types": "types/index.d.ts",
   "author": {
     "name": "Richard Hung",
     "email": "richardhung111@gmail.com",
     "url": "https://www.magicmediamuse.com/"
   },
   "scripts": {
-    "dev": "nodemon",
     "lint": "npx eslint src/ --ext .js,.jsx,.ts,.tsx",
-    "build": "rm -rf dist && tsc && npm run scss",
-    "scss": "sass src/lavalamp.scss dist/lavalamp.css"
+    "build": "rm -rf build/ && npm run wp && npm run scss",
+    "scss": "sass src/lavalamp.scss build/lavalamp.css",
+    "scssw": "sass --watch src/lavalamp.scss build/lavalamp.css",
+    "wp": "webpack",
+    "wpw": "webpack --watch"
   },
   "licenses": [
     {
@@ -29,7 +31,7 @@
       "url": "http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"
     }
   ],
-  "main": "dist/lavalamp.js",
+  "main": "build/lavalamp.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Richard1320/Lava-Lamp.git"
@@ -42,9 +44,11 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "eslint": "^7.15.0",
-    "nodemon": "^2.0.6",
     "sass": "^1.30.0",
-    "typescript": "^4.1.3"
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
   },
   "eslintConfig": {
     "root": true,
