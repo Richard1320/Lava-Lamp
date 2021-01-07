@@ -19,9 +19,16 @@
 import {ISettings} from "../types";
 
 class Lavalamp {
+	wrapper: HTMLElement;
+	lavalampObject: HTMLDivElement;
+	settings: ISettings;
+	children: HTMLCollection;
 
-	constructor(element: HTMLElement, customSettings: ISettings) {
-		console.log("constructor");
+	constructor(wrapper: HTMLElement, customSettings: ISettings) {
+		this.wrapper = wrapper;
+		this.wrapper.classList.add("lavalamp");
+		this.children = wrapper.children;
+
 		const defaultSettings: ISettings = {
 			easing: 'ease', // Easing transition
 			duration: 700, // Duration of animation
@@ -34,23 +41,25 @@ class Lavalamp {
 			delayOn: 0, // Delay time on hover
 			delayOff: 0, // Delay time off hover
 			enableFocus: false, // Animate on keyboard focus
-			deepFocus: false, // Animate on decendant focus
+			deepFocus: false, // Animate on descendant focus
 		};
 
-		const settings: ISettings = {...defaultSettings, ...customSettings};
-		const children = element.children;
+		this.settings = {...defaultSettings, ...customSettings};
 
 		// Create lavalamp object
-		const lavalampObject = document.createElement('div');
-		element.prepend(lavalampObject);
+		this.lavalampObject = document.createElement('div');
+		this.lavalampObject.classList.add("lavalamp__object");
+		this.lavalampObject.style.transitionDuration = `${this.settings.duration / 1000}s`;
+		this.wrapper.prepend(this.lavalampObject);
+
 	}
 }
 
-export {}
 declare global {
 	interface Window {
 		Lavalamp: Lavalamp;
 	}
 }
 
+// @ts-ignore
 window.Lavalamp = Lavalamp;
