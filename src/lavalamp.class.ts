@@ -43,8 +43,6 @@ class Lavalamp {
 			margins: false, // Whether or not to include margins
 			setOnClick: false, // Whether or not to set the new active element on click
 			initActiveQuery: '.active', // Initial query selector for the active element
-			autoUpdate: false, // Update every interval
-			updateTime: 100, // Time between update checks
 			enableHover: true, // lavalamp moves with hover instead of click
 			delayOn: 0, // Delay time on hover
 			delayOff: 0, // Delay time off hover
