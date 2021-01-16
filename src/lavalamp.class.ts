@@ -95,6 +95,12 @@ class Lavalamp {
 				element.addEventListener("mousedown", this.setOnClick.bind(this));
 			});
 		}
+
+		// Initial reposition of lavalamp element
+		window.addEventListener('DOMContentLoaded', () => {
+			this.reposition(this.activeElement);
+		});
+
 	}
 
 	/**
