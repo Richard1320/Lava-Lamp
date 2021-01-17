@@ -18,10 +18,11 @@
     "url": "https://www.magicmediamuse.com/"
   },
   "scripts": {
+    "docs": "cp -r ./build/. ./docs/assets && cd ./docs && bundle exec jekyll serve --livereload",
     "lint": "npx eslint src/ --ext .js,.jsx,.ts,.tsx",
     "build": "rm -rf build/ && npm run wp && npm run scss",
-    "scss": "sass src/lavalamp.scss build/lavalamp.css",
-    "scssw": "sass --watch src/lavalamp.scss build/lavalamp.css",
+    "scss": "sass src/lavalamp.scss build/css/lavalamp.css",
+    "scssw": "sass --watch src/lavalamp.scss build/css/lavalamp.css",
     "wp": "webpack",
     "wpw": "webpack --watch"
   },
