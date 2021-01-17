@@ -1,0 +1,12 @@
+{
+  "verbose": true,
+  "ignore": [
+    "*/**/test",
+    "*/**/build"
+  ],
+  "watch": [
+    "src"
+  ],
+  "ext": "ts,tsx,json,html,scss",
+  "exec": "npm run build && npm run lint && npm run docs"
+}
