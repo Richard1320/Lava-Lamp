@@ -46,7 +46,7 @@ class Lavalamp {
 			enableHover: true, // lavalamp moves with hover instead of click
 			delayOn: 0, // Delay time on hover
 			delayOff: 0, // Delay time off hover
-			enableFocus: false, // Animate on keyboard focus
+			enableFocus: false, // Animate on element focus
 			deepFocus: false, // Animate on descendant focus
 		};
 		this.settings = {...defaultSettings, ...customSettings};

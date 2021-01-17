@@ -1,4 +1,5 @@
 type TEasing =
+	string |
 	"ease" |
 	"linear" |
 	"ease-in" |
@@ -38,6 +39,6 @@ export interface ISettings {
 	enableHover?: boolean; // lavalamp moves with hover instead of click
 	delayOn?: number; // Delay time on hover
 	delayOff?: number; // Delay time off hover
-	enableFocus?: boolean; // Animate on keyboard focus
+	enableFocus?: boolean; // Animate on element focus
 	deepFocus?: boolean; // Animate on decendant focus
 }
