@@ -22,7 +22,7 @@ title: Lava Lamp
 email: richardhung111@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Lava Lamp is a navigation plugin for the web browser that uses JavaScript to animate a moving background.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/Lava-Lamp" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: richard1320
 show_downloads: true
