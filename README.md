@@ -1,49 +1,33 @@
 Lava-Lamp
 =================
 
-Description: A jQuery animating navigation plugin. It creates a div that moves when you mouse over an element, giving it an elastic animation.
+Description: A JavaScript animation plugin for menus. It creates a div that moves when you mouse over an element, giving
+it an elastic animation.
 
-Author: Richard Hung
+Author: [Richard Hung](https://magicmediamuse.com/)
 
-More documentation and examples: http://lavalamp.magicmediamuse.com
+More documentation and examples: [https://richard1320.github.io/Lava-Lamp/](https://richard1320.github.io/Lava-Lamp/)
 
-## Install
-
-Install it using [Bower](http://bower.io):
-
-```sh
-$ bower install lavalamp
-```
-
-Install it using [npm](https://www.npmjs.org/):
-
-```sh
-$ npm install lavalamp
-```
-
-Or [download as ZIP](https://github.com/Richard1320/Lava-Lamp/archive/master.zip).
-
-Key Features
+How to install
 --------------------
 
-* Very lightweight; plugin is only one JavaScript file
-* Allows you to set a new active element on click
-* Calculates margins
+**Link Files**
 
-How to Use
---------------------
+Lava Lamp has a .js and .css file. All its animations are done with CSS3 transitions, so you can use or modify the
+advanced transition-timing-function to create custom easing.
 
-Lava Lamp has a .js  and .css file in addition to the jQuery library. All its animations are done with CSS3 transitions, so you can use or modify the advanced transition-timing-function to create custom easing.
-
-```
-<link type="text/css" href="css/jquery.lavalamp.css" rel="stylesheet" media="screen" />
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/jquery.lavalamp.min.js"></script>
+```html
+<!-- Include the stylesheet -->
+<link type="text/css" href="build/css/lavalamp.css" rel="stylesheet" media="screen"/>
+<!-- Include the lava lamp plugin -->
+<script type="text/javascript" src="build/js/lavalamp.js"></script>
 ```
 
-Create a container for the plugin and the children elements that you will mouse over.
+**Create HTML**
 
-```
+Create a container for the slider and children for the panels. Remember to add a default active element.
+
+```html
 <ul id="navlist">
     <li class="active"><a href="/">Home</a></li>
     <li><a href="/about.html">About</a></li>
@@ -53,18 +37,25 @@ Create a container for the plugin and the children elements that you will mouse 
 </ul>
 ```
 
-Call the plugin after the HTML markup and required files.
+**Call the plugin**
 
-```
-$('#navlist').lavalamp({
-    easing: 'easeOutBack'
-});
+Call the lava lamp plugin after the HTML markup.
+
+```javascript
+const settings = {
+    margins: true,
+};
+const element = document.getElementById("navlist");
+const lavalampInstance = new Lavalamp(element, settings);
 ```
 
-Style the lava lamp object with CSS.
+**Style it**
 
-```
-.lavalamp-object {
-	background-color:#ccc;
+The plugin creates a div with the `lavalamp__object` class in the container. This object stretches with the width and
+height of the element that you're hovering over.
+
+```css
+.lavalamp__object {
+    box-shadow: 0 0 5px 0 #999 inset;
 }
 ```
