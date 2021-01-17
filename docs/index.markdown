@@ -1,15 +1,11 @@
-Lava-Lamp
-=================
+---
+layout: default
+---
 
-Description: A JavaScript animation plugin for menus. It creates a div that moves when you mouse over an element, giving
-it an elastic animation.
+Lava Lamp is a JavaScript plugin for menus. It creates a div that changes its own width, height and position of your
+hovered or focused element.
 
-Author: [Richard Hung](https://magicmediamuse.com/)
-
-More documentation and examples: [https://richard1320.github.io/Lava-Lamp/](https://richard1320.github.io/Lava-Lamp/)
-
-How to install
---------------------
+# How to install
 
 **Link Files**
 
@@ -59,3 +55,11 @@ height of the element that you're hovering over.
     box-shadow: 0 0 5px 0 #999 inset;
 }
 ```
+
+## Examples
+
+[Click Here](./examples)
+
+## Options
+
+[Click Here](./options)

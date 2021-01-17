@@ -1,0 +1,201 @@
+/*!
+ * Lavalamp 
+ * https://lavalamp.magicmediamuse.com/
+ */
+.lavalamp {
+    position: relative;
+}
+.lavalamp__item {
+    z-index: 5;
+    position: relative;
+}
+.lavalamp__object {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.lavalamp__object {
+    /**
+     * Custom easing transitions
+     */
+    -webkit-transition-property: -webkit-transform, width, height;
+    -moz-transition-property: -moz-transform, width, height;
+    -o-transition-property: -o-transform, width, height;
+    transition-property: transform, width, height;
+}
+.lavalamp__object.ease {
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+.lavalamp__object.ease-in {
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+.lavalamp__object.ease-out {
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.lavalamp__object.ease-in-out {
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+}
+.lavalamp__object.linear {
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    transition-timing-function: linear;
+}
+.lavalamp__object.easeInQuad {
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -moz-transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    -o-transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+.lavalamp__object.easeInCubic {
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -moz-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    -o-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.lavalamp__object.easeInQuart {
+    -webkit-transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    -moz-transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    -o-transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.lavalamp__object.easeInQuint {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -moz-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -o-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+.lavalamp__object.easeInSine {
+    -webkit-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+.lavalamp__object.easeInExpo {
+    -webkit-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    -moz-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    -o-transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+.lavalamp__object.easeInCirc {
+    -webkit-transition-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    -moz-transition-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    -o-transition-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+.lavalamp__object.easeInBack {
+    -webkit-transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.lavalamp__object.easeOutQuad {
+    -webkit-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -moz-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -o-transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.lavalamp__object.easeOutCubic {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -moz-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -o-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.lavalamp__object.easeOutQuart {
+    -webkit-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    -o-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.lavalamp__object.easeOutQuint {
+    -webkit-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    -moz-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    -o-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+.lavalamp__object.easeOutSine {
+    -webkit-transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+    -moz-transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+    -o-transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.lavalamp__object.easeOutExpo {
+    -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.lavalamp__object.easeOutCirc {
+    -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    -moz-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.lavalamp__object.easeOutBack {
+    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.lavalamp__object.easeInOutQuad {
+    -webkit-transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    -moz-transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    -o-transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.lavalamp__object.easeInOutCubic {
+    -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.lavalamp__object.easeInOutQuart {
+    -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.lavalamp__object.easeInOutQuint {
+    -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    -moz-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    -o-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+}
+.lavalamp__object.easeInOutSine {
+    -webkit-transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    -moz-transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    -o-transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.lavalamp__object.easeInOutExpo {
+    -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    -moz-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    -o-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+.lavalamp__object.easeInOutCirc {
+    -webkit-transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+.lavalamp__object.easeInOutBack {
+    -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/*# sourceMappingURL=lavalamp.css.map */

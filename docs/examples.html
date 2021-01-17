@@ -1,0 +1,187 @@
+---
+title: "Examples"
+permalink: /examples
+layout: default
+---
+
+<style type="text/css" media="screen">
+    .lavalamp__object {
+        box-shadow: 0 0 5px 0 #999 inset;
+    }
+
+    .navlist li {
+        margin: 10px;
+        padding: 10px;
+    }
+</style>
+
+<h1>Examples</h1>
+
+<h2>Default</h2>
+<p>Creates a div that animates when you mouse over sibling elements.</p>
+<ul id="default" class="navlist">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+<script>
+    const elementDefault = document.getElementById("default");
+    const lavalampDefault = new Lavalamp(elementDefault);
+</script>
+{% highlight javascript %}
+const elementDefault = document.getElementById("default");
+const lavalampDefault = new Lavalamp(elementDefault);
+{% endhighlight %}
+
+<h2>Margins</h2>
+<p>Calculates margins when determining the width and height of the lava lamp object.</p>
+<ul id="margins" class="navlist">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+<script>
+    const elementMargins = document.getElementById("margins");
+    const lavalampMargins = new Lavalamp(elementMargins, {
+        margins: true
+    });
+</script>
+{% highlight javascript %}
+const elementMargins = document.getElementById("margins");
+const lavalampMargins = new Lavalamp(elementMargins, {
+margins: true
+});
+{% endhighlight %}
+
+
+<h2>Set on Click</h2>
+<p>The lava lamp object sets a new active element when you click on it. You still have to set a default active element
+    or the lavalamp won't initialize correctly.</p>
+<ul id="setonclick" class="navlist">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+<script>
+    const elementSetOnClick = document.getElementById("setonclick");
+    const lavalampSetOnClick = new Lavalamp(elementSetOnClick, {
+        setOnClick: true
+    });
+</script>
+{% highlight javascript %}
+const elementSetOnClick = document.getElementById("setonclick");
+const lavalampSetOnClick = new Lavalamp(elementSetOnClick, {
+setOnClick: true
+});
+{% endhighlight %}
+
+<h2>Set active element</h2>
+<p>You can change the current active element by passing it into the wrapper data. After setting the data, you need to
+    update the wrapper so your lavalamp object moves to the correct element.</p>
+<ul id="setactive" class="navlist">
+    <li id="setactive-item-1" class="active"><a href="#">Home</a></li>
+    <li id="setactive-item-2"><a href="#">About</a></li>
+    <li id="setactive-item-3"><a href="#">Services</a></li>
+    <li id="setactive-item-4"><a href="#">Programs</a></li>
+    <li id="setactive-item-5"><a href="#">Contact</a></li>
+</ul>
+<select id="setactive-links">
+    <option selected="selected" value="1">Item 1</option>
+    <option value="2">Item 2</option>
+    <option value="3">Item 3</option>
+    <option value="4">Item 4</option>
+    <option value="5">Item 5</option>
+</select>
+<script>
+    const elementSetActive = document.getElementById("setactive");
+    const lavalampSetActive = new Lavalamp(elementSetActive, {});
+    document.getElementById("setactive-links").addEventListener("change", (e) => {
+        const index = parseInt(e.currentTarget.value);
+        const newActiveElement = document.getElementById(`setactive-item-${index}`);
+        lavalampSetActive.activeElement = newActiveElement;
+        lavalampSetActive.reposition(newActiveElement);
+    });
+</script>
+{% highlight javascript %}
+const elementSetActive = document.getElementById("setactive");
+const lavalampSetActive = new Lavalamp(elementSetActive, {});
+document.getElementById("setactive-links").addEventListener("change", (e) => {
+const index = parseInt(e.currentTarget.value);
+const newActiveElement = document.getElementById(`setactive-item-${index}`);
+lavalampSetActive.activeElement = newActiveElement;
+lavalampSetActive.reposition(newActiveElement);
+});
+{% endhighlight %}
+
+<h2>Delay Animation</h2>
+<p>You can put a delay before and after hover states.</p>
+<ul id="delay" class="navlist">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+<script>
+    const elementDelay = document.getElementById("delay");
+    const lavalampDelay = new Lavalamp(elementDelay, {
+        delayOn: 500,
+        delayOff: 1000,
+    });
+</script>
+{% highlight javascript %}
+const elementDelay = document.getElementById("delay");
+const lavalampDelay = new Lavalamp(elementDelay, {
+delayOn: 500,
+delayOff: 1000,
+});
+{% endhighlight %}
+
+<h2>Animate on Focus</h2>
+<p>LavalampClass object animates on object focus.</p>
+<ul id="focus" class="navlist">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Programs</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+<script>
+    const elementFocus = document.getElementById("focus");
+    const lavalampFocus = new Lavalamp(elementFocus, {
+        enableFocus: true,
+    });
+</script>
+{% highlight javascript %}
+const elementFocus = document.getElementById("focus");
+const lavalampFocus = new Lavalamp(elementFocus, {
+enableFocus: true,
+});
+{% endhighlight %}
+
+<h2>Animate on Decendant Focus</h2>
+<p>LavalampClass object moves on focus of decendants.</p>
+<ul id="focus-deep" class="navlist">
+    <li class="active"><input type="text" name="input[]"/></li>
+    <li><input type="text" name="input[]"/></li>
+    <li><input type="text" name="input[]"/></li>
+    <li><input type="text" name="input[]"/></li>
+</ul>
+<script type="text/javascript">
+    const elementDeepFocus = document.getElementById("focus-deep");
+    const lavalampDeepFocus = new Lavalamp(elementDeepFocus, {
+        deepFocus: true,
+    });
+</script>
+{% highlight javascript %}
+const elementDeepFocus = document.getElementById("focus-deep");
+const lavalampDeepFocus = new Lavalamp(elementDeepFocus, {
+deepFocus: true,
+});
+{% endhighlight %}
