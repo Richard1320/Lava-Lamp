@@ -14,9 +14,9 @@ advanced transition-timing-function to create custom easing.
 
 ```html
 <!-- Include the stylesheet -->
-<link type="text/css" href="build/lavalamp.css" rel="stylesheet" media="screen"/>
+<link type="text/css" href="build/css/lavalamp.css" rel="stylesheet" media="screen"/>
 <!-- Include the lava lamp plugin -->
-<script type="text/javascript" src="build/lavalamp.js"></script>
+<script type="text/javascript" src="build/js/lavalamp.js"></script>
 ```
 
 **Create HTML**
@@ -55,3 +55,11 @@ height of the element that you're hovering over.
     box-shadow: 0 0 5px 0 #999 inset;
 }
 ```
+
+## Examples
+
+[Click Here](./examples)
+
+## Options
+
+[Click Here](./options)

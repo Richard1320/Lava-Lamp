@@ -40,6 +40,14 @@
         </section>
 
         <aside id="sidebar">
+            <nav>
+                <ul>
+                    <li><h3><a href="{{ './' | absolute_url }}">Home</a></h3></li>
+                    <li><h3><a href="{{ './options' | absolute_url }}">Options</a></h3></li>
+                    <li><h3><a href="{{ './examples' | absolute_url }}">Examples</a></h3></li>
+                </ul>
+            </nav>
+
             {% if site.show_downloads %}
             <a href="{{ site.github.zip_url }}" class="button">
                 <small>Download</small>
