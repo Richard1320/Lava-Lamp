@@ -40,7 +40,7 @@
   "bugs": {
     "url": "https://github.com/Richard1320/Lava-Lamp/issues"
   },
-  "homepage": "https://lavalamp.magicmediamuse.com",
+  "homepage": "https://richard1320.github.io/Lava-Lamp/",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
